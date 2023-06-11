@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
 }
 
 class _HomePageBody extends StatelessWidget {
-  const _HomePageBody({super.key});
+  const _HomePageBody();
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +46,13 @@ class _HomePageBody extends StatelessWidget {
     switch(currentIndex){
 
       case 0:
-        return MapasPage();
+        return const  MapasPage();
 
       case 1: 
-        return DirectionsPage();
+        return const DirectionsPage();
 
       default:
-        return MapasPage();
+        return const MapasPage();
 
     }
   }
