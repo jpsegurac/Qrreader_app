@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:qrreader_app/widget/scan_button.dart';
+import 'package:provider/provider.dart';
+import 'package:qrreader_app/pages/pages.dart';
+import 'package:qrreader_app/providers/ui_provider.dart';
 import 'package:qrreader_app/widget/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,19 +13,47 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Historial'),
+        title: const Text('Historial'),
         actions: [
           IconButton(onPressed: () {}, 
-          icon: Icon(Icons.delete_forever),
+          icon: const Icon(Icons.delete_forever),
           )
         ],
       ),
-      body: Center(
-        child: Text('HomePage'),
-      ),
-      bottomNavigationBar: CustomNavigationBar(),
-      floatingActionButton: ScanButton(),
+      body:  const _HomePageBody(),
+      bottomNavigationBar: const CustomNavigationBar(),
+      floatingActionButton: const ScanButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+  }
+}
+
+class _HomePageBody extends StatelessWidget {
+  const _HomePageBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    //obtener el select menu opt
+    final uiProvider = Provider.of<UiProvider>(context);
+    
+
+    //cambiar para mostrar pagina respectiva
+
+    
+    final currentIndex = uiProvider.selectedMenuOpt;
+
+    switch(currentIndex){
+
+      case 0:
+        return MapasPage();
+
+      case 1: 
+        return DirectionsPage();
+
+      default:
+        return MapasPage();
+
+    }
   }
 }

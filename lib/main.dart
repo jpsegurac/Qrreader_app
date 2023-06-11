@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qrreader_app/pages/home_page.dart';
-import 'package:qrreader_app/pages/map_page.dart';
+import 'package:provider/provider.dart';
+import 'package:qrreader_app/pages/pages.dart';
+import 'package:qrreader_app/providers/ui_provider.dart';
+
 
 void main() => runApp(const MyApp());
 
@@ -9,14 +11,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'QR Reader',
-      initialRoute: 'home',
-      routes: {
-        'home': (_) =>  const HomePage() ,
-        'map' :(_) => const MapPage(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) =>  UiProvider(),
+        )
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'QR Reader',
+        initialRoute: 'home',
+        routes: {
+          'home': (_) =>  const HomePage() ,
+          'map' :(_) => const MapPage(),
+        },
+        theme: ThemeData(
+          primaryColor: Colors.teal,
+          appBarTheme: const AppBarTheme(color: Colors.teal),
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(backgroundColor: Colors.deepOrange)
+        )
+      ),
     );
   }
 }
