@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qrreader_app/pages/pages.dart';
+import 'package:qrreader_app/providers/db_provider.dart';
 import 'package:qrreader_app/providers/ui_provider.dart';
 import 'package:qrreader_app/widget/widgets.dart';
 
@@ -38,10 +39,11 @@ class _HomePageBody extends StatelessWidget {
     final uiProvider = Provider.of<UiProvider>(context);
     
 
-    //cambiar para mostrar pagina respectiva
-
-    
+    //cambiar para mostrar pagina respectiva    
     final currentIndex = uiProvider.selectedMenuOpt;
+
+    //todo temportal leer DB
+    DBProvider.db.database;
 
     switch(currentIndex){
 
